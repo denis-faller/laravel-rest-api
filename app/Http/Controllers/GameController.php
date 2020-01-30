@@ -24,10 +24,10 @@ class GameController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(GameRequest $request)
-     {
-         $day = Game::create($request->validated());
-         return $day;
-     }
+    {
+        $game = Game::create($request->validated());
+        return $game;
+    }
 
     /**
      * Display the specified resource.
@@ -37,7 +37,8 @@ class GameController extends Controller
      */
     public function show($id)
     {
-        return $game = Game::findOrFail($id);
+        $game = Game::findOrFail($id);
+        return $game;
     }
 
     /**
