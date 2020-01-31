@@ -13,8 +13,9 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::post('/register', 'Api\AuthController@register')->name('register');
+Route::post('/login', 'Api\AuthController@login')->name('login');
+Route::middleware('auth:api')->group(function () {
+    Route::apiResource('/games', 'GameController');
+    Route::get('/logout', 'Api\AuthController@logout')->name('logout');
 });
-
-Route::apiResource('/games', 'GameController');
